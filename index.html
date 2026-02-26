@@ -1,36 +1,409 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>BetterBarks Inspired</title>
-<style>
-body{margin:0;font-family:system-ui,Arial,sans-serif;background:#070a0f;color:#eee}
-.hero{position:relative;height:60vh;overflow:hidden}
-.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,10,15,0),rgba(7,10,15,.95))}
-.wrap{position:relative;padding:80px 20px 30px}
-h1{margin:0;font-size:clamp(30px,6vw,56px)}
-.lead{margin:10px 0;color:rgba(255,255,255,.72)}
-.about img{width:100%;border-radius:18px;border:1px solid rgba(255,255,255,.16)}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Better Barks by Bek | Columbus Dog Training</title>
+  <meta name="description" content="Family-friendly, playful dog training in Columbus, Ohio." />
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fbf7ef;
+      --panel:#ffffff;
+      --ink:#121826;
+      --muted:#516172;
+      --accent:#ff7b00;
+      --accent2:#1fb4a7;
+      --line:rgba(18,24,38,.10);
+      --shadow:0 20px 70px rgba(18,24,38,.12);
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;}
+    a{color:inherit}
+
+    .wrap{width:min(1120px, calc(100% - 44px));margin:0 auto}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:18px}
+
+    .brand{display:flex;align-items:center;gap:12px;min-width:260px}
+    .mark{width:40px;height:40px;border-radius:14px;background:radial-gradient(circle at 30% 20%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%), linear-gradient(135deg, var(--accent), var(--accent2));box-shadow:0 10px 30px rgba(18,24,38,.12)}
+    .brand h1{margin:0;font-family:"Rubik";font-weight:700;font-size:16px;line-height:1.05}
+    .brand p{margin:3px 0 0 0;color:var(--muted);font-size:12px}
+
+    nav ul{display:flex;align-items:center;gap:14px;padding:0;margin:0;list-style:none}
+    nav a{display:block;text-decoration:none;font-family:"Rubik";font-weight:500;font-size:14px;padding:9px 10px;border-radius:12px}
+    nav a:hover{background:rgba(18,24,38,.06)}
+
+    .header-cta{display:flex;align-items:center;gap:12px}
+    .btn{border:0;cursor:pointer;border-radius:12px;font-family:"Rubik";font-weight:700;font-size:14px;padding:10px 12px}
+    .btn.primary{background:var(--accent);color:#fff}
+    .btn.primary:hover{filter:brightness(.97)}
+    .btn.ghost{background:rgba(18,24,38,.06);color:var(--ink)}
+    .btn.ghost:hover{background:rgba(18,24,38,.08)}
+
+    .mobile-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:14px;border:1px solid var(--line);background:#fff;cursor:pointer}
+
+    /* Hero */
+    .hero{position:relative;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;padding:38px 0 54px}
+
+    .hero h2{margin:0;font-family:"Rubik";font-weight:800;font-size:clamp(30px, 4.3vw, 56px);line-height:1.02}
+    .hero .lead{margin:12px 0 0 0;color:var(--muted);font-size:16px;line-height:1.55}
+
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(18,24,38,.05);border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:12px}
+
+    .hero-actions{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px}
+
+    .hero-note{margin-top:16px;color:var(--muted);font-size:13px;line-height:1.45}
+
+    .hero-media{position:relative;height:100%;border-radius:22px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+    .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-media .overlay{position:absolute;inset:auto auto 18px 18px;padding:10px 12px;border-radius:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:1px solid rgba(18,24,38,.10)}
+    .overlay b{display:block;font-family:"Rubik";font-size:12px}
+    .overlay span{display:block;margin-top:3px;font-size:12px;color:var(--muted)}
+
+    /* Sections */
+    section{padding:42px 0}
+    h3{margin:0;font-family:"Rubik";font-weight:800;font-size:22px}
+    .section-lead{margin:10px 0 0 0;color:var(--muted);line-height:1.55}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:22px}
+    .card{background:var(--panel);border-radius:18px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(18,24,38,.08);padding:18px}
+    .card img{width:100%;border-radius:16px;border:1px solid var(--line);margin-bottom:12px}
+    .card b{display:block;font-family:"Rubik"}
+    .card p{margin:8px 0 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+
+    .steps{display:grid;gap:14px;margin-top:18px}
+    .step{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 16px;background:rgba(255,255,255,.72);border-radius:16px;border:1px solid var(--line)}
+    .bubble{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 30px rgba(18,24,38,.12)}
+    .step b{font-family:"Rubik";font-size:14px}
+    .step span{color:var(--muted);font-size:13px;line-height:1.55}
+
+    .faq details{margin-top:14px;background:rgba(255,255,255,.72);border-radius:16px;border:1px solid var(--line)}
+    .faq summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:700;font-family:"Rubik"}
+    .faq summary::marker{content:""}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq p{margin:0;padding:0 16px 14px 16px;color:var(--muted);line-height:1.55;font-size:13px}
+
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .tier{padding:18px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 40px rgba(18,24,38,.08)}
+    .tier b{display:block;font-family:"Rubik"}
+    .tier .price{margin-top:8px;font-family:"Rubik";font-size:28px}
+    .tier ul{margin:14px 0 0 16px;color:var(--muted);font-size:13px;line-height:1.7}
+
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+    form{padding:18px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 40px rgba(18,24,38,.08)}
+    label{display:block;margin-top:12px;font-weight:700;font-family:"Rubik";font-size:13px}
+    input, textarea{width:100%;margin-top:6px;padding:12px;border-radius:14px;border:1px solid rgba(18,24,38,.16);background:#fff;font:inherit}
+    textarea{min-height:120px;resize:vertical}
+    .meta{padding:18px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid var(--line)}
+
+    footer{border-top:1px solid var(--line);background:rgba(255,255,255,.5);padding:22px 0;color:var(--muted)}
+    footer a{color:var(--muted)}
+
+    /* Toast */
+    .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);padding:12px 14px;border-radius:16px;background:rgba(18,24,38,.90);color:#fff;font-family:"Rubik";font-weight:600;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s}
+    .toast.show{opacity:1}
+
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+      nav ul.open{display:flex;flex-direction:column;align-items:stretch;margin-top:10px}
+      .mobile-toggle{display:inline-flex}
+      .topbar{align-items:flex-start;flex-wrap:wrap}
+      .wrap{width:min(980px, calc(100% - 30px))}
+      .grid-3,.pricing{grid-template-columns:1fr}
+      .grid-2,.contact{grid-template-columns:1fr}
+      .brand{min-width:200px}
+    }
+  </style>
 </head>
+
 <body>
-<section class="hero">
-  <img class="bg" src="https://images.pexels.com/photos/26202793/pexels-photo-26202793.jpeg" alt="Dog running">
-  <div class="overlay"></div>
-  <div class="wrap">
-    <h1>Stock-image starter site</h1>
-    <p class="lead">Images from Pexels (royalty-free). Replace with your own branding.</p>
-  </div>
-</section>
+  <div class="toast" id="toast">Message sent. We’ll respond within one business day.</div>
 
-<section class="about">
-  <div style="padding:40px 20px">
-    <h2>About</h2>
-    <p class="lead">A simple layout inspired by BetterBarksByBek—no copied content.</p>
-    <img src="https://images.pexels.com/photos/1453478/pexels-photo-1453478.jpeg" alt="Person with a dog">
-  </div>
-</section>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <h1>Better Barks by Bek</h1>
+            <p>Columbus, Ohio — family-friendly training</p>
+          </div>
+        </div>
 
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false">≡</button>
+
+        <nav aria-label="Primary navigation">
+          <ul id="navList">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-cta">
+          <button class="btn ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a consult</button>
+          <button class="btn primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See programs</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <h2>Playful training that fits real life.</h2>
+            <p class="lead">We help Columbus families build calm, confident dogs with clear structure and fun, easy-to-use routines.</p>
+
+            <div class="pillrow" role="list">
+              <span class="pill" role="listitem">Puppy foundations</span>
+              <span class="pill" role="listitem">Confidence building</span>
+              <span class="pill" role="listitem">Leash + walk skills</span>
+              <span class="pill" role="listitem">Family-friendly coaching</span>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get started</button>
+              <button class="btn ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">Our process</button>
+            </div>
+
+            <p class="hero-note">No gimmicks, no stress. Just practical training you can keep using every day.</p>
+          </div>
+
+          <div class="hero-media" aria-label="Photo of dog training">
+            <img src="https://images.pexels.com/photos/26202793/pexels-photo-26202793.jpeg" alt="Dog running on a beach" loading="lazy" />
+            <div class="overlay">
+              <b>Better Barks by Bek</b>
+              <span>Family-friendly dog training — Columbus, OH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" aria-label="Services">
+      <div class="wrap">
+        <h3>Services</h3>
+        <p class="section-lead">Choose what fits: puppy foundations, walk confidence, or support for anxious/overwhelmed dogs.</p>
+
+        <div class="grid-3">
+          <div class="card">
+            <img src="https://images.pexels.com/photos/27046663/pexels-photo-27046663.jpeg" alt="Dog and trainer in a park" loading="lazy" />
+            <b>Puppy Foundations</b>
+            <p>Start the right habits: crate, potty, recall basics, calm handling, and household rules—without killing the fun.</p>
+          </div>
+          <div class="card">
+            <img src="https://images.pexels.com/photos/19175823/pexels-photo-19175823.jpeg" alt="Person walking multiple dogs" loading="lazy" />
+            <b>Leash & Walk Coaching</b>
+            <p>We simplify leash expectations, routines, and body language so walks feel predictable, safe, and consistent.</p>
+          </div>
+          <div class="card">
+            <img src="https://images.pexels.com/photos/1453478/pexels-photo-1453478.jpeg" alt="Person with a dog" loading="lazy" />
+            <b>Confidence & Calm</b>
+            <p>Build your dog’s confidence with structured play, decompression, and rules that make it easier for them to relax.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" aria-label="Process" style="background:rgba(255,255,255,.55)">
+      <div class="wrap">
+        <div class="grid-2">
+          <div>
+            <h3>How it works</h3>
+            <p class="section-lead">Clear structure. Simple rules. Training that supports the family—because the dog isn’t the only one learning.</p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="bubble" aria-hidden="true"></div>
+                <div>
+                  <b>Step 1 — Quick consult</b>
+                  <span>We cover your dog’s baseline, what’s working, and what actually happens day-to-day at home.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="bubble" aria-hidden="true"></div>
+                <div>
+                  <b>Step 2 — Structure + routine</b>
+                  <span>We give you a simple plan you can repeat: decompression, rules, training moments, and consistent walk expectations.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="bubble" aria-hidden="true"></div>
+                <div>
+                  <b>Step 3 — Practice you actually do</b>
+                  <span>Short sessions and daily habits that build lasting change without burnout.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <b>What you get</b>
+            <p style="margin-top:8px">A practical toolkit you can use forever—not a random list of cues.</p>
+            <ul style="margin-top:14px;margin-left:18px;color:var(--muted);line-height:1.8;font-size:13px">
+              <li>Family-friendly routine coaching</li>
+              <li>Clean, consistent expectations</li>
+              <li>Confidence building exercises</li>
+              <li>Walk structure + decompression</li>
+              <li>Support you’ll actually use</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" aria-label="Pricing">
+      <div class="wrap">
+        <h3>Pricing</h3>
+        <p class="section-lead">Your time matters. We keep pricing simple and transparent.</p>
+
+        <div class="pricing">
+          <div class="tier">
+            <b>Starter Session</b>
+            <div class="price">$149</div>
+            <ul>
+              <li>90-minute consult</li>
+              <li>Baseline assessment</li>
+              <li>Immediate routine plan</li>
+            </ul>
+          </div>
+          <div class="tier">
+            <b>Confidence Pack</b>
+            <div class="price">$499</div>
+            <ul>
+              <li>4 sessions + homework</li>
+              <li>Confidence & calm focus</li>
+              <li>Walk structure coaching</li>
+            </ul>
+          </div>
+          <div class="tier">
+            <b>Custom Plan</b>
+            <div class="price">Contact</div>
+            <ul>
+              <li>Tailored to your household</li>
+              <li>Flexible scheduling</li>
+              <li>Support for complex cases</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq" aria-label="FAQ" style="background:rgba(255,255,255,.55)">
+      <div class="wrap">
+        <h3>FAQ</h3>
+
+        <details>
+          <summary>Do you work with anxious dogs?</summary>
+          <p>Yes. We focus on decompression, clear structure, and confidence building—without overwhelming the dog.</p>
+        </details>
+        <details>
+          <summary>Do you train using punishment?</summary>
+          <p>We lead with structure, clarity, and consistency. Training decisions always prioritize the dog’s wellbeing and long-term stability.</p>
+        </details>
+        <details>
+          <summary>What happens after the consult?</summary>
+          <p>You’ll get a simple routine and clear next steps. If you want support implementing the plan, we’ll schedule it.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <div class="wrap">
+        <h3>Contact</h3>
+        <p class="section-lead">If you’re ready to get started, tell us about your dog and what you want help with. We’ll follow up by email.</p>
+
+        <div class="contact">
+          <form onsubmit="return submitContact(event)">
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Your name" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+            <label for="dog">Dog</label>
+            <input id="dog" name="dog" placeholder="Dog’s name / breed" />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What do you want help with?" required></textarea>
+            <div style="margin-top:14px">
+              <button class="btn primary" type="submit">Send message</button>
+              <button class="btn ghost" type="button" onclick="document.querySelector('form').reset()">Reset</button>
+            </div>
+          </form>
+
+          <div class="meta">
+            <b style="font-family:'Rubik'">Where we work</b>
+            <p class="section-lead" style="margin-top:6px">Columbus, Ohio</p>
+
+            <p class="section-lead" style="margin-top:14px">
+              Want to schedule a consult? Use the contact form and we’ll reply with availability.
+            </p>
+
+            <div style="margin-top:18px;color:var(--muted);font-size:13px">
+              Stock photos from Pexels. Replace with your own images as soon as possible.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+        <div>© <span id="year"></span> Better Barks by Bek</div>
+        <div style="font-size:13px">Images via Pexels (royalty-free)</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navList = document.getElementById('navList');
+
+    function closeMobile(){
+      navList.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded','false');
+    }
+
+    mobileToggle?.addEventListener('click', () => {
+      navList.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', navList.classList.contains('open'));
+    });
+
+    navList?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        closeMobile();
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function submitContact(e){
+      e.preventDefault();
+      document.querySelector('form').reset();
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+      return false;
+    }
+  </script>
 </body>
 </html>
